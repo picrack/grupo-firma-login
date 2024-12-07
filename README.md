@@ -1,27 +1,36 @@
-# Proyecto
+# Grupo Firma Login
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+## Descripción
+Este proyecto es una aplicación web desarrollada con Angular para gestionar procesos de inicio de sesión
 
-## Development server
+## Instalación
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/picrack/grupo-firma-login.git
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Navega al directorio del proyecto:
 
-## Code scaffolding
+cd grupo-firma-login
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Instala las dependencias:
 
-## Build
+    npm install
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# Uso
 
-## Running unit tests
+## Para ejecutar la aplicación en modo de desarrollo:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+ng serve
 
-## Running end-to-end tests
+# Tecnologías usadas
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    Angular
+    TypeScript
+    [Otros frameworks y librerías relevantes]
 
-## Further help
+# Contribuciones
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Si deseas contribuir, por favor haz un fork del repositorio y realiza un pull request.
+
+
+
