@@ -1,1 +1,22 @@
-<p>protected-page works!</p>
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-bold">¡Bienvenido {{ userData?.firstName }} {{ userData?.lastName }}!</h1>
+      <img [src]="userData?.image" alt="Foto de perfil" class="w-16 h-16 rounded-full border border-gray-300" />
+    </div>
+    <div class="space-y-4">
+      <p class="text-gray-600">
+        <span class="font-semibold">Usuario:</span> {{ userData?.username }}
+      </p>
+      <p class="text-gray-600">
+        <span class="font-semibold">Nombre:</span> {{ userData?.firstName }} {{ userData?.lastName }}
+      </p>
+      <p class="text-gray-600">
+        <span class="font-semibold">Email:</span> {{ userData?.email }}
+      </p>
+      <p class="text-gray-600">
+        <span class="font-semibold">Género:</span> {{ userData?.gender }}
+      </p>
+    </div>
+  </div>
+</div>

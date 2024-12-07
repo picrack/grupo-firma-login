@@ -1,61 +1,48 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-login',
-  template: `
-    <div class="min-h-screen flex items-center justify-center bg-gray-100">
-      <div class="bg-white p-8 rounded shadow-md w-96">
-        <h2 class="text-2xl mb-4">Login</h2>
-        <form (ngSubmit)="onSubmit()">
-          <input 
-            [(ngModel)]="username" 
-            name="username"
-            type="text" 
-            placeholder="Username" 
-            class="w-full p-2 border mb-4"
-          >
-          <input 
-            [(ngModel)]="password" 
-            name="password"
-            type="password" 
-            placeholder="Password" 
-            class="w-full p-2 border mb-4"
-          >
-          <button 
-            type="submit" 
-            class="w-full bg-blue-500 text-white p-2 rounded"
-          >
-            Login
-          </button>
-        </form>
-      </div>
-    </div>
-  `
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  username = '';
-  password = '';
+  loginForm: FormGroup;
+  isLoading = false;
+  errorMessage = '';
 
-  constructor(
-    private authService: AuthService, 
-    private router: Router
-  ) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+    this.loginForm = this.fb.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
 
-  onSubmit() {
-    this.authService.login(this.username, this.password)
-      .subscribe({
-        next: (response) => {
-          if (response.token) {
-            localStorage.setItem('token', response.token);
-            this.router.navigate(['/protected']);
-          }
-        },
-        error: (error) => {
-          console.error('Login error', error);
-          alert('Invalid credentials');
+  onSubmit(): void {
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.isLoading = true;
+    this.errorMessage = '';
+    const { username, password } = this.loginForm.value;
+
+  this.authService.login(username, password)
+    .subscribe({
+      next: (response: any) => {
+        console.log(response);
+        if (response.accessToken) {
+          localStorage.setItem('token', response.accessToken);
+          localStorage.setItem('userData', JSON.stringify(response));
+          this.router.navigate(['/dashboard']);
         }
-      });
+      },
+      error: (error) => {
+        console.error('Login error', error);
+      }
+    });
+
   }
 }
